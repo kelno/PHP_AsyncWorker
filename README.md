@@ -19,7 +19,7 @@ function my_funky_function_array($arg1, $arg2, $arg3)
     return array("returned_array");
 }
 
-$worker = new ASyncWorker("my_funky_function_array", "echo1", "echo2", "echo3"); //will start working immediately
+$worker = new AsyncWorker("my_funky_function_array", "echo1", "echo2", "echo3"); //will start working immediately
 
 // ... Do some other work ...
 
