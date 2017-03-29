@@ -3,7 +3,7 @@
 /* Object pcntl_fork wrapper
 Usage examples are included as comments below
 */
-class ASyncWorker {
+class AsyncWorker {
 
     private $pid = 0;
     private $failed = false;
@@ -133,8 +133,8 @@ function my_funky_function_array($arg1, $arg2, $arg3)
     return array("returned_array");
 }
 
-$worker = new ASyncWorker("my_funky_function", "echo1", "echo2"); //will start working immediately
-$worker2 = new ASyncWorker("my_funky_function_array", "echo3", "echo4", "echo5");
+$worker = new AsyncWorker("my_funky_function", "echo1", "echo2"); //will start working immediately
+$worker2 = new AsyncWorker("my_funky_function_array", "echo3", "echo4", "echo5");
 
 $result = $worker->wait();
 if($worker->has_failed())
@@ -146,5 +146,5 @@ $result2 = $worker2->wait();
 if($worker2->has_failed())
     echo "FAILURE" . PHP_EOL;
 else
-    echo "Result: " . print_r($result2) . PHP_EOL;
+    echo print_r($result2) . PHP_EOL;
 */
