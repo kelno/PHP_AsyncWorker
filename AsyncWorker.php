@@ -1,6 +1,12 @@
 <?php
 
-//note: If given command return evaluates to false, this is considered an error
+/* Object pcntl_fork wrapper
+Usages example are included as comments below
+
+/!\ Important note: If given command return evaluates to false, this is considered an error. 
+This is because call_user_func_array return false on error, so I can't distinguish between 
+the function returning false or an error. Possible fix: http://stackoverflow.com/questions/11767728/what-if-call-user-func-is-supposed-to-return-false
+*/
 class ASyncWorker {
 
     private $pid = 0;
@@ -119,17 +125,15 @@ function my_funky_function_array($arg1, $arg2, $arg3)
     return array("returned_array");
 }
 
-$worker = new ASyncWorker("my_funky_function", "echo1", "echo2");
+$worker = new ASyncWorker("my_funky_function", "echo1", "echo2"); //will start working immediately
 $worker2 = new ASyncWorker("my_funky_function_array", "echo3", "echo4", "echo5");
 
-//result is an array with fixed indexes defined in called function
 $result = $worker->wait();
 if($worker->has_failed())
     echo "FAILURE" . PHP_EOL;
 else
     echo "Result: $result" . PHP_EOL;
 
-//result is an array with fixed indexes defined in called function
 $result2 = $worker2->wait();
 if($worker2->has_failed())
     echo "FAILURE" . PHP_EOL;
