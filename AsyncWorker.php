@@ -1,7 +1,7 @@
 <?php
 
 /* Object pcntl_fork wrapper
-Usages example are included as comments below
+Usage examples are included as comments below
 */
 class ASyncWorker {
 
