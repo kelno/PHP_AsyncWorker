@@ -11,7 +11,7 @@ class ASyncWorker {
     private $success_file_handler = null; //child will write in this file if command was successful
     const SUCCESS_CODE = 'OK';
 
-    function __construct() {
+    public function __construct() {
         $this->result_file_handler = tmpfile();
         $this->success_file_handler = tmpfile();
         if(!$this->result_file_handler || !$this->success_file_handler)
@@ -63,7 +63,7 @@ class ASyncWorker {
         } //else this is the parent thread, nothing to do
     }
 
-    function wait() {
+    public function wait() {
         if($this->failed == true)
             return false;
 
@@ -100,7 +100,7 @@ class ASyncWorker {
         return $result;
     }
 
-    function has_failed() {
+    public function has_failed() {
         return $this->failed;
     }
 
